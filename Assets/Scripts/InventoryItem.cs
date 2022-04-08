@@ -9,14 +9,15 @@ public class InventoryItem
 
     public InventoryItem(InventoryItemData source) {
         data = source;
-        AddToStack();
+        AddToStack(1);
     }
 
-    public void AddToStack( ) {
-        stackSize++;
+    public void AddToStack(int amount) {
+        stackSize += amount;
     }
 
-    public void RemoveFromStack() {
-        stackSize--;
+    public void RemoveFromStack(int amount) {
+        stackSize -= amount;
+        if (stackSize < 0) stackSize = 0;
     }
 }

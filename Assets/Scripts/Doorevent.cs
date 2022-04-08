@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Doorevent : MonoBehaviour
+public class DoorEvent : MonoBehaviour
 { 
+    // Singleton
+    public static DoorEvent instance;
     public string ActivateTag = "Player";
     public event System.Action<Collider> OnDoorEnterTrigger;
     public event System.Action<Collider> OnDoorExitTrigger;
     
+    private void Awake() {
+        if (instance != null && instance != this)
+            Destroy(gameObject);
+        else {
+            instance = this;
+            GameObject.DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    void Update() {
+        
+    }
+
     private void OnTriggerEnter (Collider other)
     {   
         if (other.tag == ActivateTag)

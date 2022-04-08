@@ -29,9 +29,9 @@ public class InventorySystem : MonoBehaviour
         return null;
     }
 
-    public void Add(InventoryItemData referenceData) {
+    public void Add(InventoryItemData referenceData, int amount) {
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) {
-            value.AddToStack();
+            value.AddToStack(amount);
         }
 
         else {
@@ -42,9 +42,9 @@ public class InventorySystem : MonoBehaviour
         onInventoryChangedEvent.Invoke();
     }
 
-    public void Remove(InventoryItemData referenceData) {
+    public void Remove(InventoryItemData referenceData, int amount) {
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value)) {
-            value.RemoveFromStack();
+            value.RemoveFromStack(amount);
             if (value.stackSize == 0) {
                 inventory.Remove(value);
                 m_itemDictionary.Remove(referenceData);

@@ -4,34 +4,48 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Doorevent doorEvent;
+    DoorEvent doorEvent;
+    [SerializeField] InventoryItemData requiredKey;
+    [SerializeField] bool consumesKey = true;
+    [SerializeField] Transform pivot;
+    [SerializeField] float rotateAngle = 90f;
+    public bool isOpen = false;
     private Quaternion StartingRotation;
     private Vector3 RotateTo;
     void Start()
     {
-         doorEvent.OnDoorEnterTrigger += DoorEvent_OnDoorEnterTrigger; 
-         doorEvent.OnDoorExitTrigger += DoorEvent_OnDoorExitTrigger;
-
-         StartingRotation = gameObject.transform.rotation;
-         RotateTo = new Vector3(0, 90, 0);
+        doorEvent = DoorEvent.instance;
+        doorEvent.OnDoorEnterTrigger += OpenDoor; 
+        doorEvent.OnDoorExitTrigger += CloseDoor;
+        StartingRotation = pivot.rotation;
     }
 
-    private void DoorEvent_OnDoorEnterTrigger(Collider obj)
+    private void OpenDoor(Collider obj)
     {   
-        gameObject.transform.rotation = Quaternion.Euler(RotateTo);
+        // need key to open the door if requiredKey is present
+        if (requiredKey) {
+            InventorySystem inventory = InventorySystem.instance;
+            if (inventory.Get(requiredKey) == null) {
+                Debug.Log("You need keeeeeeeeeeey! "+requiredKey.displayName);
+                return;
+            }
+            if (consumesKey) {
+                inventory.Remove(requiredKey, 1);
+            }
+        }
+        transform.RotateAround(pivot.position, pivot.up, rotateAngle);
+        isOpen = true;
     }
-    private void DoorEvent_OnDoorExitTrigger(Collider obj)
+    private void CloseDoor(Collider obj)
     {   
-        gameObject.transform.rotation = StartingRotation;
+        transform.RotateAround(pivot.position, pivot.up, -rotateAngle);
+        isOpen = false;
+    }
+
+    public void OpenDoorOneTimeUse() {
+        OpenDoor(null);
+        if (isOpen)
+            gameObject.tag = "Obstacle";
     }
     
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("q"))
-        {
-        DoorEvent_OnDoorEnterTrigger(null);    
-        }  
-    }
 }

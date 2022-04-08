@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - InventoryItem
+  - Door
+  - Interact
   layers:
   - Default
   - TransparentFX
