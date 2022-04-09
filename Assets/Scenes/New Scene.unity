@@ -1335,6 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceItem: {fileID: 11400000, guid: 122fa8e2a0674434ca43dea1bca719ea, type: 2}
+  pickupAmount: 1
   noResetFlag: -1
 --- !u!1001 &699692795
 PrefabInstance:
@@ -2649,8 +2650,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredKey: {fileID: 11400000, guid: 122fa8e2a0674434ca43dea1bca719ea, type: 2}
+  consumesKey: 0
   pivot: {fileID: 1458878643}
   rotateAngle: 90
+  isOpen: 0
 --- !u!1 &1237570696
 GameObject:
   m_ObjectHideFlags: 0
