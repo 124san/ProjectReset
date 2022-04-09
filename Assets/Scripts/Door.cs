@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : InteractableObject
 {
-    DoorEvent doorEvent;
-    [SerializeField] InventoryItemData requiredKey;
+    public DoorEvent doorEvent;
     [SerializeField] bool consumesKey = true;
     [SerializeField] Transform pivot;
     [SerializeField] float rotateAngle = 90f;
@@ -14,23 +13,26 @@ public class Door : MonoBehaviour
     private Vector3 RotateTo;
     void Start()
     {
-        doorEvent = DoorEvent.instance;
-        doorEvent.OnDoorEnterTrigger += OpenDoor; 
-        doorEvent.OnDoorExitTrigger += CloseDoor;
+        doorEvent = this.GetComponentInChildren<DoorEvent>();
+        if (doorEvent)
+        {
+            doorEvent.OnDoorEnterTrigger += OpenDoor; 
+            doorEvent.OnDoorExitTrigger += CloseDoor;
+        }
         StartingRotation = pivot.rotation;
     }
 
     private void OpenDoor(Collider obj)
     {   
         // need key to open the door if requiredKey is present
-        if (requiredKey) {
+        if (referenceItem) {
             InventorySystem inventory = InventorySystem.instance;
-            if (inventory.Get(requiredKey) == null) {
-                Debug.Log("You need keeeeeeeeeeey! "+requiredKey.displayName);
+            if (inventory.Get(referenceItem) == null) {
+                Debug.Log("You need keeeeeeeeeeey! "+referenceItem.displayName);
                 return;
             }
             if (consumesKey) {
-                inventory.Remove(requiredKey, 1);
+                inventory.Remove(referenceItem, referenceAmount);
             }
         }
         transform.RotateAround(pivot.position, pivot.up, rotateAngle);
@@ -42,10 +44,8 @@ public class Door : MonoBehaviour
         isOpen = false;
     }
 
-    public void OpenDoorOneTimeUse() {
+    public override void HandleInteraction() {
         OpenDoor(null);
-        if (isOpen)
-            gameObject.tag = "Obstacle";
     }
     
 }

@@ -8,7 +8,6 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] GameObject currentlySelectedItem;
     [SerializeField] Material highlightMaterial;
     [SerializeField] Material defaultMaterial;
-    string[] interactableTags = {"InventoryItem", "Door"};
     // Start is called before the first frame update
     void Start()
     {
@@ -19,24 +18,16 @@ public class SelectionManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("e") && currentlySelectedItem) {
-            switch (currentlySelectedItem.tag) {
-                case "InventoryItem":
-                    currentlySelectedItem.GetComponent<ItemObject>().OnHandlePickupItem();
-                    break;
-                case "Door":
-                    Door door = currentlySelectedItem.GetComponent<Door>();
-                    if (door) {
-                        door.OpenDoorOneTimeUse();
-                    }
-                        
-                    break;
+            InteractableObject interactable = currentlySelectedItem.GetComponent<InteractableObject>();
+            if (interactable) {
+                interactable.HandleInteraction();
             }
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        
-        if (Array.Exists(interactableTags, element => element == other.tag)) {
+        InteractableObject interactable = other.GetComponent<InteractableObject>();
+        if (interactable) {
             currentlySelectedItem = other.gameObject;
             var selectionRendererChildren = other.GetComponentInChildren<Renderer>();
             if (selectionRendererChildren) {
