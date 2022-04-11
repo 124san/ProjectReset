@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NoResetManager : MonoBehaviour
+public class FlowController : MonoBehaviour
 {
-    public static NoResetManager instance;
+    public static FlowController instance;
     public bool[] flags;
-    public static NoResetManager Instance {get {return instance;}}
+    public static FlowController Instance {get {return instance;}}
     // Start is called before the first frame update
     
     private void Awake() {
