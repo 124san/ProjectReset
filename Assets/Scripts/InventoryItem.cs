@@ -18,6 +18,6 @@ public class InventoryItem
 
     public void RemoveFromStack(int amount) {
         stackSize -= amount;
-        if (stackSize < 0) stackSize = 0;
+        if (stackSize < 0) stackSize= 0;
     }
 }

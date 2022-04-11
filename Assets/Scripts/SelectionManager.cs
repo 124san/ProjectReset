@@ -17,6 +17,7 @@ public class SelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DialogueUI.instance.isOpen) return;
         if (Input.GetKeyDown("e") && currentlySelectedItem) {
             InteractableObject interactable = currentlySelectedItem.GetComponent<InteractableObject>();
             if (interactable) {

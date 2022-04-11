@@ -24,6 +24,7 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DialogueUI.instance.isOpen) return;
         Move();
     }
 
