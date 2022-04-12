@@ -7,9 +7,9 @@ public class InventoryItem
     public InventoryItemData data {get; private set;}
     public int stackSize {get; private set;}
 
-    public InventoryItem(InventoryItemData source) {
+    public InventoryItem(InventoryItemData source, int amount) {
         data = source;
-        AddToStack(1);
+        AddToStack(amount);
     }
 
     public void AddToStack(int amount) {
@@ -18,6 +18,6 @@ public class InventoryItem
 
     public void RemoveFromStack(int amount) {
         stackSize -= amount;
-        if (stackSize < 0) stackSize= 0;
+        if (stackSize < 0) stackSize = 0;
     }
 }

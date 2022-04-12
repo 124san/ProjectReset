@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -19,6 +20,22 @@ public class InventorySystem : MonoBehaviour
             GameObject.DontDestroyOnLoad(gameObject);
             inventory = new List<InventoryItem>();
             m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+    void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
+        // Go through all items and reset the green ones
+        List<InventoryItem> toDelete = new List<InventoryItem>();
+        foreach (var item in inventory) {
+            if(item.data.isResetting) {
+                toDelete.Add(item);
+            }
+        }
+
+        foreach (var item in toDelete) {
+            item.RemoveFromStack(999);
+            inventory.Remove(item);
+            m_itemDictionary.Remove(item.data);
         }
     }
 
@@ -35,7 +52,7 @@ public class InventorySystem : MonoBehaviour
         }
 
         else {
-            InventoryItem newItem = new InventoryItem(referenceData);
+            InventoryItem newItem = new InventoryItem(referenceData, amount);
             inventory.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }

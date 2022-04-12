@@ -9,6 +9,7 @@ public class InventoryUIManager : MonoBehaviour
     void Start()
     {
         InventorySystem.instance.onInventoryChangedEvent.AddListener(OnUpdateInventory);
+        DrawInventory();
     }
 
     void OnUpdateInventory() {

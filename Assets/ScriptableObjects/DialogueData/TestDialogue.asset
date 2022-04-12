@@ -16,3 +16,12 @@ MonoBehaviour:
   - J am a man of fortune,
   - and J must seek my fortune
   - "\u6253\u5012\u5C0Fxiong\u5582\u4F60"
+  responses:
+  - responseText: w3ww
+    dialogueObject: {fileID: 11400000, guid: 8ba4b6d8397469748bbee3887fdfd519, type: 2}
+  - responseText: dddd
+    dialogueObject: {fileID: 11400000, guid: fb44a387c8fc2e74d996546530903799, type: 2}
+  - responseText: ww
+    dialogueObject: {fileID: 11400000, guid: 8ba4b6d8397469748bbee3887fdfd519, type: 2}
+  - responseText: ffffffff
+    dialogueObject: {fileID: 11400000, guid: 8ba4b6d8397469748bbee3887fdfd519, type: 2}

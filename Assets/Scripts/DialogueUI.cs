@@ -24,6 +24,9 @@ public class DialogueUI : MonoBehaviour
         responseHandler = GetComponent<ResponseHandler>();
         CloseDialogueBox();
     }
+    public void AddResponseEvents(ResponseEvent[] responseEvents) {
+        responseHandler.AddResponseEvents(responseEvents);
+    }
 
     public void ShowDialogue(DialogueData dialogueObject) {
         isOpen = true;
@@ -46,7 +49,7 @@ public class DialogueUI : MonoBehaviour
         else CloseDialogueBox();
     }
 
-    private void CloseDialogueBox() {
+    public void CloseDialogueBox() {
         isOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;

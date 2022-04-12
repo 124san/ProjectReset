@@ -8,4 +8,5 @@ public class InventoryItemData : ScriptableObject
     public string displayName;
     public Sprite icon;
     public GameObject prefab;
+    public bool isResetting;
 }
