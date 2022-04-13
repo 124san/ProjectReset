@@ -10,8 +10,9 @@ public class DialogueUI : MonoBehaviour
     public bool isOpen {get; private set;}
     public static DialogueUI instance;
     private ResponseHandler responseHandler;
+    // Response event for event with no response
+    private ResponseEvent responseEvent;
     private TypewriterEffect typewriterEffect;
-    // Start is called before the first frame update
     private void Awake() {
         if (instance != null && instance != this)
             Destroy(gameObject);
@@ -27,6 +28,10 @@ public class DialogueUI : MonoBehaviour
     public void AddResponseEvents(ResponseEvent[] responseEvents) {
         responseHandler.AddResponseEvents(responseEvents);
     }
+    public void AddResponseEvent(ResponseEvent responseEvent) {
+        this.responseEvent = responseEvent;
+    }
+
 
     public void ShowDialogue(DialogueData dialogueObject) {
         isOpen = true;
@@ -46,7 +51,13 @@ public class DialogueUI : MonoBehaviour
         if (dialogueObject.HasResponses) {
             responseHandler.ShowResponses(dialogueObject.Responses);
         }
-        else CloseDialogueBox();
+        else {
+            if (responseEvent != null) {
+                responseEvent.OnPickedResponse?.Invoke();
+            }
+            responseEvent = null;
+            CloseDialogueBox();
+        }
     }
 
     public void CloseDialogueBox() {

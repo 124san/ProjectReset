@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemObject : InteractableObject
 {
     public override void HandleInteraction() {
-        InventorySystem.instance.Add(referenceItem, referenceAmount);
+        AddReferenceItem();
         if (noResetFlag >= 0 && FlowController.instance) {
             FlowController.instance.flags[noResetFlag] = true;
         }

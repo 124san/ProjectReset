@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   id: 1
-  displayName: Key
+  displayName: C. Key
   icon: {fileID: 21300000, guid: a9f04ee9a593c714d8852df332bef9b1, type: 3}
   prefab: {fileID: 0}
+  isResetting: 1

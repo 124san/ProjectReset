@@ -7,11 +7,13 @@ public class FlowController : MonoBehaviour
 {
     public static FlowController instance;
     public bool[] flags;
+    public int[] variables;
     public static FlowController Instance {get {return instance;}}
     // Start is called before the first frame update
     
     private void Awake() {
-        flags = new bool[400];
+        flags = new bool[200];
+        variables = new int[200];
         if (instance != null && instance != this)
             Destroy(gameObject);
         else {
@@ -25,6 +27,18 @@ public class FlowController : MonoBehaviour
     {
         if(Input.GetKeyDown("r")) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    public void SetFlag(int index, bool value) {
+        if (index > 0 && index < flags.Length) {
+            flags[index] = value;
+        }
+    }
+
+    public void SetVariable(int index, int value) {
+        if (index > 0 && index < variables.Length) {
+            variables[index] = value;
         }
     }
 }

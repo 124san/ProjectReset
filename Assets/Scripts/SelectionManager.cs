@@ -51,4 +51,8 @@ public class SelectionManager : MonoBehaviour
             defaultMaterial = null;
         }
     }
+
+    public void ResetSelection(Collider other) {
+        OnTriggerExit(other);
+    }
 }
