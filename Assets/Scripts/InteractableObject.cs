@@ -17,11 +17,4 @@ public abstract class InteractableObject : MonoBehaviour
     public void AddReferenceItem() {
         InventorySystem.instance.Add(referenceItem, referenceAmount);
     }
-    public void SetFlag(FlagInfo flag) {
-        FlowController.instance.SetFlag(flag.index, flag.value);
-    }
-
-    public void SetVariable(VariableInfo variable) {
-        FlowController.instance.SetVariable(variable.index, variable.value);
-    }
 }

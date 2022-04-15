@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
-  m_Name: YesOrNo
+  m_Name: StatueFakeRepeat
   m_EditorClassIdentifier: 
+  id: 2
   dialogue:
-  - monkaHmm
-  - Yes or no?
+  - Do you want to insert your round stone into her eye socket?
   responses:
   - responseText: Yes
     dialogueObject: {fileID: 11400000, guid: 8ba4b6d8397469748bbee3887fdfd519, type: 2}
