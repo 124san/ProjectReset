@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueActivator : InteractableObject
 {
-    [SerializeField] DialogueData dialogueObject;
+    [SerializeField] protected DialogueData dialogueObject;
     // Start is called before the first frame update
     void Start()
     {

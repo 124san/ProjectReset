@@ -38,7 +38,6 @@ public class TypewriterEffect : MonoBehaviour
                 bool isLast = i >= textToType.Length - 1;
                 textLabel.text = textToType.Substring(0, i+1);
                 if (IsPunctuation(textToType[i], out float waitTime) && !isLast && !(IsPunctuation(textToType[i+1], out _))) {
-                    Debug.Log(textToType[i]);
                     yield return new WaitForSeconds(waitTime);
                 }
             }
@@ -50,7 +49,6 @@ public class TypewriterEffect : MonoBehaviour
     private bool IsPunctuation(char character, out float waitTime) {
         foreach (Punctuation punctuation in punctuations) {
             if (punctuation.punctuations.Contains(character)) {
-                Debug.Log("current char is "+character);
                 waitTime = punctuation.waitTime;
                 return true;
             }

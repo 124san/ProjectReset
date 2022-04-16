@@ -6,6 +6,7 @@ public abstract class InteractableObject : MonoBehaviour
 {
     // Start is called before the first frame update
     public InventoryItemData referenceItem;
+    // Player can interact with InteractableObject only if isInteractable is set to true
     public bool isInteractable = true;
     public int referenceAmount = 1;
     public int noResetFlag = -1;
@@ -17,5 +18,8 @@ public abstract class InteractableObject : MonoBehaviour
     public abstract void HandleInteraction();
     public void AddReferenceItem() {
         InventorySystem.instance.Add(referenceItem, referenceAmount);
+    }
+    public void SetInteractable(bool value) {
+        isInteractable = value;
     }
 }
