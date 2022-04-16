@@ -12,6 +12,7 @@ public class GridMovement : MonoBehaviour
     [SerializeField] float speed = 5f;
     float rayLength = 1f;
     bool canMove;
+    public bool isSitting;
 
     public Vector3 nextPos, destination, direction;
     void Start()
@@ -25,7 +26,13 @@ public class GridMovement : MonoBehaviour
     void Update()
     {
         if (DialogueUI.instance.isOpen) return;
-        Move();
+        if (isSitting) {
+            if(Input.GetKey(KeyCode.F)) {
+                isSitting = false;
+                destination = transform.position+new Vector3(0, 0, 1f);
+            }
+        }
+        else Move();
     }
 
     void Move() {

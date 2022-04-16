@@ -6,6 +6,7 @@ public abstract class InteractableObject : MonoBehaviour
 {
     // Start is called before the first frame update
     public InventoryItemData referenceItem;
+    public bool isInteractable = true;
     public int referenceAmount = 1;
     public int noResetFlag = -1;
     void Awake() {

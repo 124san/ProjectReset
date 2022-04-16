@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
+  m_Name: StatueChange
+  m_EditorClassIdentifier: 
+  id: 4
+  dialogue:
+  - 'There is a note on the statue, it reads
+
+    "Her left eye shall be filled with
+    sadness and grief".'
+  - 'You notice that her left eye socket is empty,
+
+    and there is a huge crack
+    across her body
+
+'
+  - 'What do you want to do?
+
+'
+  responses:
+  - responseText: Insert stone into eye socket
+    dialogueObject: {fileID: 11400000, guid: 8ba4b6d8397469748bbee3887fdfd519, type: 2}
+  - responseText: Touch the crack
+    dialogueObject: {fileID: 11400000, guid: 3b8ec3296272e6047aa2b188bbd4d542, type: 2}
+  - responseText: Go back
+    dialogueObject: {fileID: 11400000, guid: fb44a387c8fc2e74d996546530903799, type: 2}

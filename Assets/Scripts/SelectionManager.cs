@@ -28,7 +28,7 @@ public class SelectionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         InteractableObject interactable = other.GetComponent<InteractableObject>();
-        if (interactable) {
+        if (interactable && interactable.isInteractable) {
             currentlySelectedItem = other.gameObject;
             var selectionRendererChildren = other.GetComponentInChildren<Renderer>();
             if (selectionRendererChildren) {

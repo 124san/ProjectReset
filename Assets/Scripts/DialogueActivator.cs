@@ -18,11 +18,8 @@ public class DialogueActivator : InteractableObject
     }
     public override void HandleInteraction() {
         DialogueUI.instance.ShowDialogue(dialogueObject);
-        if (TryGetComponent(out DialogueResponseEvents responseEvents) && responseEvents.DialogueObject == dialogueObject) {
-            
-        }
-        foreach(DialogueResponseEvents responeEvents in GetComponents<DialogueResponseEvents>()) {
-            if (dialogueObject.Id == responeEvents.DialogueObject.Id) {
+        foreach(DialogueResponseEvents responseEvents in GetComponents<DialogueResponseEvents>()) {
+            if (dialogueObject.Id == responseEvents.DialogueObject.Id) {
                 if (dialogueObject.HasResponses) {
                     DialogueUI.instance.AddResponseEvents(responseEvents.Events);
                 }
