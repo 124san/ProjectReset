@@ -52,7 +52,8 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    public void ResetSelection(Collider other) {
-        OnTriggerExit(other);
+    public void ResetSelection() {
+        if (currentlySelectedItem != null)
+            OnTriggerExit(currentlySelectedItem.GetComponent<Collider>());
     }
 }

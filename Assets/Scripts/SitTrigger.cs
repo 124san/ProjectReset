@@ -8,14 +8,15 @@ public class SitTrigger : MonoBehaviour
     private float sitCountDown;
     public bool isTriggered = false;
     GridMovement player;
-    // Start is called before the first frame update
+    public void SetTrigger(bool value) {
+        isTriggered = value;
+    }
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<GridMovement>();
         sitCountDown = sitTriggerTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isTriggered) return;

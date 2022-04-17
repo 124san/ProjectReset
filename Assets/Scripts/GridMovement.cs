@@ -27,9 +27,12 @@ public class GridMovement : MonoBehaviour
     {
         if (DialogueUI.instance.isOpen) return;
         if (isSitting) {
+            // Placeholder for sit
             if(Input.GetKey(KeyCode.F)) {
                 isSitting = false;
                 destination = transform.position+new Vector3(0, 0, 1f);
+                SelectionManager selectionManager = GetComponentInChildren<SelectionManager>();
+                selectionManager.ResetSelection();
             }
         }
         else Move();

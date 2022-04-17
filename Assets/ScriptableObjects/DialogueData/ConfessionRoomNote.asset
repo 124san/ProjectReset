@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
+  m_Name: ConfessionRoomNote
+  m_EditorClassIdentifier: 
+  id: 7
+  dialogue:
+  - Here is a note, it reads-
+  - "\"If you are reading this, it\u2019s already too late. Aren\u2019t we all blinded
+    by the righteousness of the foul? Oh lord, next time I shall sit and listen.\""
+  responses: []

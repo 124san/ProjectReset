@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f71c04a48b4b4114188aab459efcd4fe, type: 3}
-  m_Name: NoResetSample
+  m_Name: FalseRoomKey
   m_EditorClassIdentifier: 
-  id: 2
-  displayName: No Reset
-  icon: {fileID: 21300000, guid: 8b67e143060b27b49adea4bbd4d21693, type: 3}
+  id: 3
+  displayName: L. Key
+  icon: {fileID: 21300000, guid: a9f04ee9a593c714d8852df332bef9b1, type: 3}
   prefab: {fileID: 0}
-  notResetting: 1
+  notResetting: 0
