@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
-  m_Name: StatueChangeTouch
+  m_Name: StatueTrue
   m_EditorClassIdentifier: 
-  id: 0
+  id: 7
   dialogue:
-  - As you touch the crack, the outer part of the lady statue suddenly breaks apart,
-    revealing a red mono-eyed figure without an eyeball in the only eye socket.
-  responses: []
+  - 'The lady statue is gone, replaced by a menacing mono-eyed figure without eyeball
+    in the only eye socket.
+
+    Do you want to put your stone into the eye socket?'
+  responses:
+  - responseText: Yes
+    dialogueObject: {fileID: 11400000, guid: 08366685dbc1faa479ea0aa0b5ba55b6, type: 2}
+  - responseText: No
+    dialogueObject: {fileID: 0}

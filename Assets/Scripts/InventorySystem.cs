@@ -27,7 +27,7 @@ public class InventorySystem : MonoBehaviour
         // Go through all items and reset the green ones
         List<InventoryItem> toDelete = new List<InventoryItem>();
         foreach (var item in inventory) {
-            if(item.data.notResetting) {
+            if(!item.data.notResetting) {
                 toDelete.Add(item);
             }
         }
