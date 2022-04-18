@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+    [SerializeField] string sceneName = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class SceneTransition : MonoBehaviour
         
         if (other.CompareTag("Player")) {
             Debug.Log(other);
-            SceneManager.LoadScene("False Room");
+            SceneManager.LoadScene(sceneName);
         }
     }
 }
