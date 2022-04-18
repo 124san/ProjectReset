@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
   m_Name: ConfessionRoomDoorHasKey
   m_EditorClassIdentifier: 
-  id: 6
+  id: 8
   dialogue:
   - 'The door is locked.
 

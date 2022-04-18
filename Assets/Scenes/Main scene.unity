@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2764e3fd263bcde409c36f2a8d270871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sitTriggerTime: 5
+  sitTriggerTime: 3
   isTriggered: 0
 --- !u!114 &39391896
 MonoBehaviour:
@@ -1493,26 +1493,26 @@ MonoBehaviour:
         - m_Target: {fileID: 1955818149}
           m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
           m_MethodName: ResetSelection
-          m_Mode: 2
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 572106369}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
+        - m_Target: {fileID: 39391895}
+          m_TargetAssemblyTypeName: SitTrigger, Assembly-CSharp
+          m_MethodName: SetTrigger
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
   - name: No
     onPickedResponse:
@@ -1542,11 +1542,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!135 &572106369 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 7339895275770457030, guid: 7024d40180bec7f41b8f52feb34c0c86, type: 3}
-  m_PrefabInstance: {fileID: 3004648859810727256}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &572106371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,10 +1587,10 @@ MonoBehaviour:
         - m_Target: {fileID: 1955818149}
           m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
           m_MethodName: ResetSelection
-          m_Mode: 2
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 572106369}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1612,6 +1607,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 2100000, guid: 2cdfd31240c8a5d4082e4007b79b2654, type: 2}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 572106372}
+          m_TargetAssemblyTypeName: DialogueActivator, Assembly-CSharp
+          m_MethodName: UpdateDialogueObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 77b93668f21f22c4d9978c3fff344656, type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueData, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1709,10 +1716,10 @@ MonoBehaviour:
         - m_Target: {fileID: 1955818149}
           m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
           m_MethodName: ResetSelection
-          m_Mode: 2
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 572106369}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1758,6 +1765,64 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &572106376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572106367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a69178040e7bf41ab92f89de62ceee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueObject: {fileID: 11400000, guid: 77b93668f21f22c4d9978c3fff344656, type: 2}
+  events:
+  - name: Yes
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 572106367}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1970067429}
+          m_TargetAssemblyTypeName: Door, Assembly-CSharp
+          m_MethodName: OpenDoor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1970067428}
+          m_TargetAssemblyTypeName: InteractableObject, Assembly-CSharp
+          m_MethodName: SetInteractable
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: 
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &699692795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2605,6 +2670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (Prayer room to End room 2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5427188354133798857, guid: 88656e9e3de1ab840aa51c2ebf9a7610, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88656e9e3de1ab840aa51c2ebf9a7610, type: 3}
 --- !u!4 &932142062 stripped
@@ -3432,6 +3501,36 @@ MonoBehaviour:
     onPickedResponse:
       m_PersistentCalls:
         m_Calls: []
+--- !u!1 &1363422143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363422144}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1363422144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363422143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 932142062}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365425625
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,6 +4899,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef950336d2b7bd48ab2c38308e92f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1970067427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5427188354133798857, guid: 88656e9e3de1ab840aa51c2ebf9a7610, type: 3}
+  m_PrefabInstance: {fileID: 932142061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1970067428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970067427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99d744476ecf6314aa318673700997d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceItem: {fileID: 11400000, guid: 18f2076fa790bac488f5054b241650c1, type: 2}
+  isInteractable: 1
+  referenceAmount: 1
+  noResetFlag: -1
+  dialogueObject: {fileID: 11400000, guid: ef62d39ac0f39c3418c5fb425372e6ae, type: 2}
+--- !u!114 &1970067429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970067427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc280280aa4001d46b5661ba009ecb47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 0}
+  requiredKey: {fileID: 0}
+  consumesKey: 0
+  requiredFlag: -1
+  pivot: {fileID: 1363422144}
+  rotateAngle: -90
+  isOpen: 0
 --- !u!1 &1981214325
 GameObject:
   m_ObjectHideFlags: 0
