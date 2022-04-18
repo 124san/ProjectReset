@@ -25,9 +25,13 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DialogueUI.instance.isOpen) return;
+        if (DialogueUI.instance.isOpen) {
+            canMove = false;
+            return;
+        }
         if (isSitting) {
             // Placeholder for sit
+            canMove = false;
             if(Input.GetKey(KeyCode.F)) {
                 isSitting = false;
                 destination = transform.position+new Vector3(0, 0, 1f);
@@ -87,5 +91,9 @@ public class GridMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 direction = transform.forward * rayLength;
         Gizmos.DrawRay(transform.position + new Vector3(0, -0.5f, 0), direction);
+    }
+    
+    // Snap player to the nearest grid
+    void ResetDestination() {
     }
 }
