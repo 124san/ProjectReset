@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SitTrigger : MonoBehaviour
+public class SitTrigger : EventTrigger
 {
     [SerializeField] float sitTriggerTime = 2f;
     private float sitCountDown;
-    public bool isTriggered = false;
     GridMovement player;
     public void SetTrigger(bool value) {
         isTriggered = value;
@@ -21,12 +20,8 @@ public class SitTrigger : MonoBehaviour
     {
         if (isTriggered) return;
         if (player.isSitting) {
-            Debug.Log(sitCountDown);
             if (sitCountDown <= 0f) {
-                EventTrigger thisEvent = GetComponent<EventTrigger>();
-                
-                Debug.Log(thisEvent);
-                thisEvent?.InvokeEvent();
+                thisEvent?.Invoke();
                 isTriggered = true;
             }
             else sitCountDown -= Time.deltaTime;

@@ -7,7 +7,7 @@ public class ItemObject : InteractableObject
     public override void HandleInteraction() {
         AddReferenceItem();
         if (noResetFlag >= 0 && FlowController.instance) {
-            FlowController.instance.flags[noResetFlag] = true;
+            FlowController.instance.SetFlag(noResetFlag, true);
         }
         Destroy(gameObject);
     }

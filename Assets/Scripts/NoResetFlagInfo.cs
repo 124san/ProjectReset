@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class NoResetFlagInfo : MonoBehaviour
+{
+    [SerializeField] public int id;
+    [SerializeField] public bool value;
+
+    public NoResetFlagInfo(int id, bool value) {
+        this.id = id;
+        this.value = value;
+    }
+
+    public void SetFlag() {
+        FlowController.instance.SetNoResetFlag(id, value);
+    }
+}

@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 public class FlowController : MonoBehaviour
 {
     public static FlowController instance;
-    public bool[] flags;
-    public int[] variables;
+    [SerializeField] bool[] flags = new bool[200];
+    [SerializeField] bool[] noResetFlags = new bool [200];
+    [SerializeField] int[] variables = new int [200];
     public static FlowController Instance {get {return instance;}}
-    // Start is called before the first frame update
     
     private void Awake() {
-        flags = new bool[200];
-        variables = new int[200];
         if (instance != null && instance != this)
             Destroy(gameObject);
         else {
@@ -27,6 +25,10 @@ public class FlowController : MonoBehaviour
     {
         if(Input.GetKeyDown("r")) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            for (int i = 0; i < flags.Length; i++)
+            {
+                flags[i] = false;
+            }
         }
     }
 
@@ -36,9 +38,34 @@ public class FlowController : MonoBehaviour
         }
     }
 
+    public void SetNoResetFlag(int index, bool value) {
+        if (index > 0 && index < noResetFlags.Length) {
+            noResetFlags[index] = value;
+        }
+    }
+
     public void SetVariable(int index, int value) {
         if (index > 0 && index < variables.Length) {
             variables[index] = value;
         }
+    }
+
+    public bool GetFlag(int index) {
+        if (index > 0 && index < flags.Length) {
+            return flags[index];
+        }
+        return false;
+    }
+    public bool GetNoResetFlag(int index) {
+        if (index > 0 && index < flags.Length) {
+            return flags[index];
+        }
+        return false;
+    }
+    public int GetVariable(int index) {
+        if (index > 0 && index < variables.Length) {
+            return variables[index];
+        }
+        return -1;
     }
 }

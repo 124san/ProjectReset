@@ -28,7 +28,7 @@ public class Door : MonoBehaviour
         if (requiredKey && InventorySystem.instance.Get(requiredKey) == null) {
             return false;
         }
-        if (requiredFlag >= 0 && !FlowController.instance.flags[requiredFlag]) {
+        if (requiredFlag >= 0 && !FlowController.instance.GetFlag(requiredFlag)) {
             return false;
         }
         return true;

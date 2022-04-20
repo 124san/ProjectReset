@@ -5,8 +5,11 @@ using UnityEngine.Events;
 
 public class EventTrigger : MonoBehaviour
 {
-    [SerializeField] UnityEvent thisEvent;
-    public void InvokeEvent() {
-        thisEvent?.Invoke();
+    public bool isTriggered;
+    [SerializeField] protected bool requireAllConditions = true;
+    [SerializeField] protected UnityEvent thisEvent;
+
+    public void SetTriggered(bool value) {
+        isTriggered = value;
     }
 }

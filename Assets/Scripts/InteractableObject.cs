@@ -11,7 +11,7 @@ public abstract class InteractableObject : MonoBehaviour
     public int referenceAmount = 1;
     public int noResetFlag = -1;
     void Awake() {
-        if (noResetFlag >= 0 && FlowController.instance && FlowController.instance.flags[noResetFlag]) {
+        if (noResetFlag >= 0 && FlowController.instance && FlowController.instance.GetFlag(noResetFlag)) {
             Destroy(gameObject);
         }
     }
