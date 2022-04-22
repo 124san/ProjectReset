@@ -93,7 +93,8 @@ public class GridMovement : MonoBehaviour
         Gizmos.DrawRay(transform.position + new Vector3(0, -0.5f, 0), direction);
     }
     
-    // Snap player to the nearest grid
-    void ResetDestination() {
+    public void SetPosition(Vector3 pos) {
+        this.transform.position = pos;
+        destination = pos;
     }
 }

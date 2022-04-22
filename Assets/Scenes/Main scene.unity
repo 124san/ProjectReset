@@ -4349,6 +4349,14 @@ PrefabInstance:
       propertyPath: sceneName
       value: True Room
       objectReference: {fileID: 0}
+    - target: {fileID: 3299650234186552744, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
+      propertyPath: destination.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299650234186552744, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
+      propertyPath: destination.z
+      value: -18.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3299650234186552745, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
       propertyPath: m_Name
       value: Transition True
@@ -5926,6 +5934,14 @@ PrefabInstance:
     - target: {fileID: 3299650234186552744, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
       propertyPath: sceneName
       value: False Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299650234186552744, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
+      propertyPath: destination.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299650234186552744, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
+      propertyPath: destination.z
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 3299650234186552745, guid: 1ebf11adfb0c76d408ca077e9c128d07, type: 3}
       propertyPath: m_Name
