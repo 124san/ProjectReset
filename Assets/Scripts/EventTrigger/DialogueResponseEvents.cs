@@ -1,14 +1,21 @@
 using UnityEngine;
 using System;
-
+/*
+ * This class handles events after a dialogue is finished.
+ *
+*/
 public class DialogueResponseEvents : MonoBehaviour
 {
+    // Corresponding dialogue to this event, must match the current dialogue for event to trigger
     [SerializeField] private DialogueData dialogueObject;
+    // Events that will be triggered based on what response is selected
+    // Length of events must match the number of responses
     [SerializeField] private ResponseEvent[] events;
 
     public DialogueData DialogueObject => dialogueObject;
     public ResponseEvent[] Events => events;
 
+    // Validate length of events to number of responses
     public void OnValidate() {
         if (dialogueObject == null) return;
         if (dialogueObject.HasResponses) {

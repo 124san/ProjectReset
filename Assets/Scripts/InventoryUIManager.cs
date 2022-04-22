@@ -5,7 +5,6 @@ using UnityEngine;
 public class InventoryUIManager : MonoBehaviour
 {
     [SerializeField] GameObject slotPrefab;
-    // Start is called before the first frame update
     void Start()
     {
         InventorySystem.instance.onInventoryChangedEvent.AddListener(OnUpdateInventory);
