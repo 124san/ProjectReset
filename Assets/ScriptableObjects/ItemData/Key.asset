@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   displayName: C. Key
   icon: {fileID: 21300000, guid: a9f04ee9a593c714d8852df332bef9b1, type: 3}
-  prefab: {fileID: 0}
-  isResetting: 1
+  prefab: {fileID: 6784129527276765292, guid: cc8c597a0dc465f4da9fcdac38d90d79, type: 3}
+  notResetting: 0

@@ -28,7 +28,7 @@ public class InventoryUIManager : MonoBehaviour
     public void AddInventorySlot(InventoryItem item) {
         GameObject obj = Instantiate(slotPrefab);
         obj.transform.SetParent(transform, false);
-
+        obj.GetComponent<ItemSlot>().correspondingItem = item.data;
         ItemSlot slot = obj.GetComponent<ItemSlot>();
         slot.Set(item);
     }
