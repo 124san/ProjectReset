@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 212310917083143125}
   - component: {fileID: 6823491709406805732}
   - component: {fileID: 1896218715484424937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ca0e17d2d0d3b49ab84995f52e15c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0}
-  alpha: 1
+  obstructionAlpha: 0.7
+  obstructable: 1

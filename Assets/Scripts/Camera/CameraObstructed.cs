@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CameraObstructed : MonoBehaviour
@@ -7,7 +8,7 @@ public class CameraObstructed : MonoBehaviour
     // Start is called before the first frame update
     public Transform Player; 
 
-    public Transform Obstruction;
+    public Obstruction[] Obstructions;
 
     public Camera cam;
 
@@ -24,24 +25,34 @@ public class CameraObstructed : MonoBehaviour
     }
 
     void ViewObstructed() {
-        RaycastHit hit;
-
+        RaycastHit[] hits;
+        int obstructableLayerMask = 1 << 6; // Layer 6 is the Obstructable layer. 
         Ray ray = Camera.main.ScreenPointToRay(cam.WorldToScreenPoint(Player.position));
+        
+        hits = Physics.RaycastAll(ray.origin, ray.direction, Mathf.Infinity, obstructableLayerMask).OrderBy(h=>h.distance).ToArray();
 
-        if(Physics.Raycast(ray.origin, ray.direction * 10, out hit)){
-            Debug.Log(string.Format("Hit object: {0}, Hit location: {1}", hit.transform.name, hit.transform.position));
-            Debug.Log(string.Format("Player position: {0}", Player.position));
-            // Debug.DrawRay(ray.origin, ray.direction * 10, Color.green);
-            if(hit.collider.gameObject.tag == "Obstacle") {
-                Obstruction = hit.transform;
-                // Debug.Log()
-                Obstruction.gameObject.GetComponent<WallTextureManager>().setAlpha(ObstructredAlpha);
-            } else {
-                if(Obstruction != null) {
-                    Obstruction.gameObject.GetComponent<WallTextureManager>().setAlpha(1.0f);
-                }
+        List<Obstruction> newObstructions = new List<Obstruction>();
+
+        // Set alpha for obstructions
+        foreach (RaycastHit hit in hits) {
+            if(hit.collider.gameObject.tag == "Player"){
+                // The ray reaches the player, the end of collider detection
+                break;
+            }
+
+            Obstruction obstruction = hit.transform.gameObject.GetComponent<Obstruction>();
+            if(obstruction.isObstructable()) {
+                newObstructions.Add(obstruction);
+                obstruction.setObstruct();
             }
         }
 
+        // Reset alpha for previous obstructions
+        IEnumerable<Obstruction> previousObstructions = Obstructions.Except(newObstructions.ToArray());
+        foreach (Obstruction obstruction in previousObstructions) {
+            obstruction.resetObstruct();
+        }
+
+        Obstructions = newObstructions.ToArray();
     }
 }
