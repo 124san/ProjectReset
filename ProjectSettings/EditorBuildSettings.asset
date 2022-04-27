@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main scene.unity
+    path: Assets/Scenes/Testing/Main scene.unity
     guid: 6ef85afe42f9c164092f759607eaeea8
   - enabled: 1
-    path: Assets/Scenes/False Room.unity
+    path: Assets/Scenes/Testing/False Room.unity
     guid: 1c72408be2715e044aa719abce81e499
   - enabled: 1
-    path: Assets/Scenes/True Room.unity
+    path: Assets/Scenes/Testing/True Room.unity
     guid: d3b0e302f60810746ab1cbb940563000
   m_configObjects: {}
