@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f71c04a48b4b4114188aab459efcd4fe, type: 3}
-  m_Name: Key
+  m_Name: TestDrop
   m_EditorClassIdentifier: 
-  id: 1
-  displayName: C. Key
-  icon: {fileID: 21300000, guid: a9f04ee9a593c714d8852df332bef9b1, type: 3}
-  usage: 0
-  prefab: {fileID: 6784129527276765292, guid: cc8c597a0dc465f4da9fcdac38d90d79, type: 3}
+  id: 4
+  displayName: T Drop
+  icon: {fileID: 21300000, guid: 8b67e143060b27b49adea4bbd4d21693, type: 3}
+  usage: 1
+  prefab: {fileID: 950709594119992861, guid: ee07c0d6d6a5bfe41a1facaef60683e6, type: 3}
   notResetting: 0
-  infoDialogue: {fileID: 11400000, guid: f3166ff6e9e9f664db1b23d4c51635df, type: 2}
+  infoDialogue: {fileID: 11400000, guid: b416d1531404c014e81395372216a0ff, type: 2}
