@@ -6,16 +6,24 @@ using UnityEngine.SceneManagement;
 public class SceneDebugger : MonoBehaviour
 {
     // Update is called once per frame
+    [SerializeField]
+    private GameObject playerPrefab;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
+            // destroyPlayer();
             setActiveScene("Room1");
+            // createPlayerOnPos(new Vector3(-0.5f, 2.02f, -13.5f), new Vector3(0.0f, 0.0f, 0.0f));
         } else if (Input.GetKeyDown(KeyCode.Keypad2)) {
+            // destroyPlayer();
             setActiveScene("Room2");
         }
     }
 
+    // This is just for redirect camera & change world light
     void setActiveScene(string sceneName) {
+        // Scene previousScene = SceneManagement.GetActiveScene();
         Scene activating = SceneManager.GetSceneByName(sceneName);
         SceneManager.SetActiveScene(activating);
 
@@ -25,13 +33,27 @@ public class SceneDebugger : MonoBehaviour
             return;
         }
 
-        Debug.Log(settings.cameraPosition);
-        Debug.Log(settings.worldLightDirection);
+        Debug.Log("Changed to scene: " + activating.name);
+        // Debug.Log(settings.cameraPosition);
+        // Debug.Log(settings.worldLightDirection);
 
         // Change camera position
         changeCameraPosition(settings.cameraPosition);
         // Change directional light direction
         changeWorldLightDirection(settings.worldLightDirection);
+    }
+
+    void destroyPlayer() {
+        // Scene currentScene = SceneManagement.GetActiveScene();
+        GameObject player = GameObject.Find("Player");
+        if(player != null) {
+            Destroy(player);
+        }
+    }
+
+    void createPlayerOnPos(Vector3 playerPos, Vector3 playerDir) {
+        Quaternion rotation = Quaternion.Euler(playerDir);
+        Instantiate(playerPrefab, playerPos, rotation);
     }
 
     // Return Scene Settings given a Scene object
@@ -47,14 +69,13 @@ public class SceneDebugger : MonoBehaviour
 
     // Change the camera pivot position under "Basic Code"
     private void changeCameraPosition(Vector3 pos) {
-        GameObject cameraPivot = GameObject.Find("CameraPivot");
-        cameraPivot.transform.position = pos;
+        Transform cameraPivotTransform = CameraPivot.instance.transform;
+        cameraPivotTransform.position = pos;
     }
 
     // Change the directional light direction under "Basic Code"
     private void changeWorldLightDirection(Vector3 dir) {
-        GameObject worldLight = GameObject.Find("Directional Light");
-        worldLight.transform.rotation = Quaternion.identity;
-        worldLight.transform.Rotate(dir);
+        Transform worldLightTransform = WorldLight.instance.transform;
+        worldLightTransform.rotation = Quaternion.Euler(dir);
     }
 }

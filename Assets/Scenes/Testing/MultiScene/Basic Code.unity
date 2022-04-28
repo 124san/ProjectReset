@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1922240224}
   - component: {fileID: 785294191}
+  - component: {fileID: 785294192}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -202,6 +203,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &785294192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785294190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e35d139ca6c294ab665c2ade8a603a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1288756030
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922240223}
+  - component: {fileID: 1922240225}
   m_Layer: 0
   m_Name: CameraPivot
   m_TagString: Untagged
@@ -330,3 +344,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 41.257, y: 109.846, z: 0}
+--- !u!114 &1922240225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922240222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be140e23e8f5fd140acc678430478be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
