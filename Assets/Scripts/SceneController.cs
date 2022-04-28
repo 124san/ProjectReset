@@ -16,7 +16,7 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DebugLoadAll();
+        // DebugLoadAll();
     }
 
     // Update is called once per frame

@@ -12,12 +12,13 @@ public class SceneDebugger : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
-            // destroyPlayer();
+            destroyPlayer();
             setActiveScene("Room1");
-            // createPlayerOnPos(new Vector3(-0.5f, 2.02f, -13.5f), new Vector3(0.0f, 0.0f, 0.0f));
+            createPlayerOnPos(new Vector3(-0.5f, 2.02f, -13.5f), new Vector3(0.0f, 0.0f, 0.0f));
         } else if (Input.GetKeyDown(KeyCode.Keypad2)) {
-            // destroyPlayer();
+            destroyPlayer();
             setActiveScene("Room2");
+            createPlayerOnPos(new Vector3(0.5f, 2.02f, 44.5f), new Vector3(0.0f, 0.0f, 0.0f));
         }
     }
 
@@ -45,9 +46,10 @@ public class SceneDebugger : MonoBehaviour
 
     void destroyPlayer() {
         // Scene currentScene = SceneManagement.GetActiveScene();
-        GameObject player = GameObject.Find("Player");
-        if(player != null) {
-            Destroy(player);
+        PlayerManager instance = PlayerManager.instance;
+        if(instance != null) {
+            Destroy(instance.gameObject);
+            PlayerManager.instance = null;
         }
     }
 
