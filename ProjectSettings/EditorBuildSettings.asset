@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing/True Room.unity
     guid: d3b0e302f60810746ab1cbb940563000
+  - enabled: 1
+    path: Assets/Scenes/Testing/MultiScene/Logic.unity
+    guid: 34c4ce32f8f7ba84788d86f43294f421
+  - enabled: 1
+    path: Assets/Scenes/Testing/MultiScene/Basic Code.unity
+    guid: 18f1fdbc29c26684890cd93cc71f5f28
+  - enabled: 1
+    path: Assets/Scenes/Testing/MultiScene/Room1.unity
+    guid: d0b20c1a78b9f9444a0365aeb64ca4b6
+  - enabled: 1
+    path: Assets/Scenes/Testing/MultiScene/Room2.unity
+    guid: f8d7cdc8624aec74da27a25fbd5301ef
   m_configObjects: {}
