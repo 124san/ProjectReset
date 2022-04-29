@@ -11,19 +11,20 @@ public class SitInteraction : InteractableObject
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<GridMovement>();
         sitCountDown = sitTriggerTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+        player = PlayerManager.instance.GetComponent<GridMovement>();
         if (!player.isSitting) {
             this.GetComponent<Collider>().enabled = true;
         }
     }
 
     public override void HandleInteraction() {
+        player = PlayerManager.instance.GetComponent<GridMovement>();
         if(player.isSitting) {
             Debug.Log("Standing up");
             // TODO: Set player move condition to True

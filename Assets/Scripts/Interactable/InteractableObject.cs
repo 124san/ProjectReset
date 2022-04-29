@@ -22,4 +22,7 @@ public abstract class InteractableObject : MonoBehaviour
     public void SetInteractable(bool value) {
         isInteractable = value;
     }
+    public void ResetPlayerSelection() {
+        PlayerManager.instance?.GetComponentInChildren<SelectionManager>().ResetSelection();
+    }
 }
