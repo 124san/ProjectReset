@@ -55,11 +55,11 @@ public class DialogueUI : MonoBehaviour
             responseHandler.ShowResponses(dialogueObject.Responses);
         }
         else {
+            CloseDialogueBox();
             if (responseEvent != null) {
                 responseEvent.OnPickedResponse?.Invoke();
             }
             responseEvent = null;
-            CloseDialogueBox();
         }
     }
 

@@ -22,4 +22,18 @@ public class TurnHandler : MonoBehaviour
     {
         
     }
+
+    public void IncrementTurn() {
+        TurnManager.instance.incrementTurn();
+    }
+
+    public void InvokeTurnEvent(int turn) {
+        foreach(TurnEvent thisEvent in events) {
+            if (thisEvent.turn == turn) {
+                Debug.Log(thisEvent);
+                thisEvent.TriggeredEvent.Invoke();
+                break;
+            }
+        }
+    }
 }

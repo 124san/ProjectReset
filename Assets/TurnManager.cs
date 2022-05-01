@@ -32,6 +32,9 @@ public class TurnManager : MonoBehaviour
         if (currentTurn != maxTurn) {
             currentTurn += 1;
             // Send signal to all TurnHandler
+            foreach (TurnHandler turnHandler in FindObjectsOfType<TurnHandler>()) {
+                turnHandler.InvokeTurnEvent(currentTurn);
+            }
         }
     }
 
