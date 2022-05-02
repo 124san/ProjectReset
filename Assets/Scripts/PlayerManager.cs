@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
         }
         else {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         }
     }
     // Start is called before the first frame update

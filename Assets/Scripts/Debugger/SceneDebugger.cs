@@ -9,6 +9,9 @@ public class SceneDebugger : MonoBehaviour
     [SerializeField]
     private GameObject playerPrefab;
 
+    [SerializeField]
+    private string[] sceneNames;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
@@ -20,7 +23,11 @@ public class SceneDebugger : MonoBehaviour
             setActiveScene("Room2");
             createPlayerOnPos(new Vector3(0.5f, 2.02f, 44.5f), new Vector3(0.0f, 0.0f, 0.0f));
         } else if (Input.GetKeyDown(KeyCode.Keypad5)) {
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene("Logic");
+            SceneManager.LoadScene("Basic Code", LoadSceneMode.Additive);
+            foreach(string sceneName in sceneNames) {
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            }
         }
     }
 

@@ -16,7 +16,6 @@ public class FlowController : MonoBehaviour
             Destroy(gameObject);
         else {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         }
     }
 

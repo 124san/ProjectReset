@@ -17,7 +17,6 @@ public class InventorySystem : MonoBehaviour
             Destroy(gameObject);
         else {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
             inventory = new List<InventoryItem>();
             m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
             SceneManager.sceneLoaded += OnSceneLoaded;

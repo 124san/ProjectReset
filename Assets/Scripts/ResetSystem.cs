@@ -13,7 +13,6 @@ public class ResetSystem : MonoBehaviour
         }
         else {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         }
     }
 

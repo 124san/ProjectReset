@@ -20,7 +20,6 @@ public class TurnManager : MonoBehaviour
         }
         else {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         }
     }
 
