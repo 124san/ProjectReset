@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TurnManager : MonoBehaviour
 {
@@ -8,9 +9,10 @@ public class TurnManager : MonoBehaviour
     private int maxTurn;
 
     [SerializeField]
-    private int currentTurn;
+    public int currentTurn;
 
     public static TurnManager instance;
+    public UnityEvent onTurnIncremented;
 
     private void Awake() {
         if (instance != null && instance != this) {
@@ -32,9 +34,7 @@ public class TurnManager : MonoBehaviour
         if (currentTurn != maxTurn) {
             currentTurn += 1;
             // Send signal to all TurnHandler
-            foreach (TurnHandler turnHandler in FindObjectsOfType<TurnHandler>()) {
-                turnHandler.InvokeTurnEvent(currentTurn);
-            }
+            onTurnIncremented.Invoke();
         }
     }
 

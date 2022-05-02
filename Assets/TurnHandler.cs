@@ -10,11 +10,9 @@ public class TurnHandler : MonoBehaviour
     [SerializeField]
     public TurnEvent[] events;
 
-    private UnityEvent[] eventList;
-
     void Start()
     {
-        eventList = new UnityEvent[TurnManager.instance.getMaxTurn()];
+        TurnManager.instance.onTurnIncremented.AddListener(InvokeTurnEvent);
     }
 
     // Update is called once per frame
@@ -27,7 +25,8 @@ public class TurnHandler : MonoBehaviour
         TurnManager.instance.incrementTurn();
     }
 
-    public void InvokeTurnEvent(int turn) {
+    public void InvokeTurnEvent() {
+        int turn = TurnManager.instance.currentTurn;
         foreach(TurnEvent thisEvent in events) {
             if (thisEvent.turn == turn) {
                 Debug.Log(thisEvent);

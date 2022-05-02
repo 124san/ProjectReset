@@ -152,8 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ce3ad2c3c192f43bc69d2940b879bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTurn: 0
+  maxTurn: 3
   currentTurn: 0
+  onTurnIncremented:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &402262746
 Transform:
   m_ObjectHideFlags: 0
