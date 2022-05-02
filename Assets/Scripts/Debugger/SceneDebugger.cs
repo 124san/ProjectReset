@@ -19,6 +19,8 @@ public class SceneDebugger : MonoBehaviour
             destroyPlayer();
             setActiveScene("Room2");
             createPlayerOnPos(new Vector3(0.5f, 2.02f, 44.5f), new Vector3(0.0f, 0.0f, 0.0f));
+        } else if (Input.GetKeyDown(KeyCode.Keypad5)) {
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
