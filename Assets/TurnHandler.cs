@@ -26,7 +26,7 @@ public class TurnHandler : MonoBehaviour
     }
 
     public void InvokeTurnEvent() {
-        int turn = TurnManager.instance.currentTurn;
+        int turn = TurnManager.instance.getCurrentTurn();
         foreach(TurnEvent thisEvent in events) {
             if (thisEvent.turn == turn) {
                 Debug.Log(thisEvent);

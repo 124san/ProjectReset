@@ -9,7 +9,7 @@ public class TurnManager : MonoBehaviour
     private int maxTurn;
 
     [SerializeField]
-    public int currentTurn;
+    private int currentTurn;
 
     public static TurnManager instance;
     public UnityEvent onTurnIncremented;

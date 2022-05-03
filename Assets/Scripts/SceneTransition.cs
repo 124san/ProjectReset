@@ -8,6 +8,7 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] string sceneName = "";
     [SerializeField] bool moveY = false;
     [SerializeField] Vector3 destination = new Vector3(0, 2.02f, 0);
+    float transitionDelay = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,17 @@ public class SceneTransition : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         
         if (other.CompareTag("Player")) {
-            Debug.Log(other);
+            TransitionAnimation.instance.TriggerAnimation();
             GridMovement player = PlayerManager.instance.GetComponent<GridMovement>();
-            SceneManager.LoadScene(sceneName);
-            Vector3 targetPosition = new Vector3(destination.x, moveY ? destination.y : player.transform.position.y, destination.z);
-            player.SetPosition(targetPosition);
+            StartCoroutine(MovePlayerWithDelay(transitionDelay, player));
         }
+    }
+
+    IEnumerator MovePlayerWithDelay(float delay, GridMovement player) {
+        yield return new WaitForSeconds(delay);
+        SceneController.instance.SetActiveScene(sceneName);
+        Vector3 targetPosition = new Vector3(destination.x, moveY ? destination.y : player.transform.position.y, destination.z);
+        player.SetPosition(targetPosition);
+        yield return new WaitForSeconds(delay);
     }
 }

@@ -11,12 +11,16 @@ public class GridMovement : MonoBehaviour
 
     [SerializeField] float speed = 5f;
     float rayLength = 1f;
-    bool canMove;
+    // Check if the player is going to move after taking inputs
+    bool goingToMove;
+    // Only take movement input if this bool is set to true
+    public bool takeMovementInput;
     public bool isSitting;
 
     public Vector3 nextPos, destination, direction;
     void Start()
     {
+        takeMovementInput = true;
         currentDirection = up;
         nextPos = Vector3.forward;
         destination = transform.position;
@@ -25,52 +29,40 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DialogueUI.instance.isOpen) {
-            canMove = false;
-            return;
+        if (!(isSitting || DialogueUI.instance.isOpen)) {
+            Move();
         }
-        if (isSitting) {
-            // Placeholder for sit
-            canMove = false;
-            if(Input.GetKey(KeyCode.F)) {
-                isSitting = false;
-                destination = transform.position+new Vector3(0, 0, 1f);
-                SelectionManager selectionManager = GetComponentInChildren<SelectionManager>();
-                selectionManager.ResetSelection();
-            }
-        }
-        else Move();
     }
 
     void Move() {
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-        if (Vector3.Distance(destination, transform.position) > 0) return;
+        if (!takeMovementInput || Vector3.Distance(destination, transform.position) > 0) return;
         if (Input.GetButton("Up")) {
             nextPos = Vector3.forward;
             currentDirection = up;
-            canMove = true;
+            goingToMove = true;
         }
         else if (Input.GetButton("Down")) {
             nextPos = Vector3.back;
             currentDirection = down;
-            canMove = true;
+            goingToMove = true;
         }
         else if (Input.GetButton("Right")) {
             nextPos = Vector3.right;
             currentDirection = right;
-            canMove = true;
+            goingToMove = true;
         }
         else if (Input.GetButton("Left")) {
             nextPos = Vector3.left;
             currentDirection = left;
-            canMove = true;
+            goingToMove = true;
         }
 
         transform.eulerAngles = currentDirection;
-        if (canMove && ValidMovement()) {
+        if (goingToMove && ValidMovement()) {
             destination = transform.position + nextPos;
             direction = nextPos;
-            canMove = false;
+            goingToMove = false;
         }
     }
 
