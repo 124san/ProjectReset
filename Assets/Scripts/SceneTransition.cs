@@ -26,7 +26,7 @@ public class SceneTransition : MonoBehaviour
 
     IEnumerator MovePlayerWithDelay(float delay, GridMovement player) {
         yield return new WaitForSeconds(delay);
-        SceneController.instance.SetActiveScene(sceneName);
+        SceneController.instance.SetActiveScene(sceneName, false);
         Vector3 targetPosition = new Vector3(destination.x, moveY ? destination.y : player.transform.position.y, destination.z);
         player.SetPosition(targetPosition);
         yield return new WaitForSeconds(delay);

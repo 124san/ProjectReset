@@ -20,16 +20,6 @@ public class FlowController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown("r")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            for (int i = 0; i < flags.Length; i++)
-            {
-                flags[i] = false;
-            }
-        }
-    }
 
     public void SetFlag(int index, bool value) {
         if (index > 0 && index < flags.Length) {
@@ -66,5 +56,12 @@ public class FlowController : MonoBehaviour
             return variables[index];
         }
         return -1;
+    }
+
+    public void ResetFlags() {
+        for (int i = 0; i < flags.Length; i++)
+        {
+            flags[i] = false;
+        }
     }
 }

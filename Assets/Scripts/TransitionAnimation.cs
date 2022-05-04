@@ -22,8 +22,8 @@ public class TransitionAnimation : MonoBehaviour
     public void TriggerAnimation() {
         transitionAnimator.SetTrigger("Start");
     }
-    public void TogglePlayerMovement() {
+    public void TogglePlayerMovement(int value) {
         GridMovement playerMovement = PlayerManager.instance.GetComponent<GridMovement>();
-        playerMovement.takeMovementInput = !playerMovement.takeMovementInput;
+        playerMovement.takeMovementInput = value > 0 ? true : false;
     }
 }

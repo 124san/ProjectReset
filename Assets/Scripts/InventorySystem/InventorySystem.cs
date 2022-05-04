@@ -19,11 +19,10 @@ public class InventorySystem : MonoBehaviour
             instance = this;
             inventory = new List<InventoryItem>();
             m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
-    void OnSceneLoaded (Scene scene, LoadSceneMode mode) {
-        // Go through all items and reset the green ones
+    public void OnReset () {
+        // Go through all items and remove items that will be reset
         List<InventoryItem> toDelete = new List<InventoryItem>();
         foreach (var item in inventory) {
             if(!item.data.notResetting) {

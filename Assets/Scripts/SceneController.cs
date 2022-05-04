@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
+    public GameObject playerPrefab;
     void Awake() {
         if (instance != null && instance != this)
             Destroy(gameObject);
@@ -40,9 +41,24 @@ public class SceneController : MonoBehaviour
     public void UnloadScene(string sceneName) {
         SceneManager.UnloadSceneAsync(sceneName);
     }
-
+    // Load at the corresponding scene during a reset process
+    public void ResetAtScene(string sceneName) {
+        Scene targetScene = SceneManager.GetSceneByName(sceneName);
+        LoadSceneAdditive(sceneName);
+        SceneManager.SetActiveScene(targetScene);
+        SceneSettings settings = getSceneSettings(targetScene);
+        if(settings == null) {
+            Debug.LogWarning("Not Finding Scene Setting!");
+            return;
+        }
+        SetCameraPosition(settings.cameraPosition);
+        SetWorldLightDirection(settings.worldLightDirection);
+        DestroyPlayer();
+        CreatePlayerOnPos(settings.playerSpawnPosition, settings.playerSpawnRotation);
+        
+    }
     // Move to the scene. Load the scene if the scene is not loaded yet
-    public void SetActiveScene(string sceneName) {
+    public void SetActiveScene(string sceneName, bool setPlayerTransform) {
         Scene targetScene = SceneManager.GetSceneByName(sceneName);
         if (!targetScene.isLoaded) {
             LoadSceneAdditive(sceneName);
@@ -54,9 +70,26 @@ public class SceneController : MonoBehaviour
             return;
         }
         // Change camera position and directional light direction in "Basic Code" scene
-        changeCameraPosition(settings.cameraPosition);
-        changeWorldLightDirection(settings.worldLightDirection);
+        if (setPlayerTransform) {
+            SetPlayerTransform(settings.playerSpawnPosition, settings.playerSpawnRotation);
+        }
+        SetCameraPosition(settings.cameraPosition);
+        SetWorldLightDirection(settings.worldLightDirection);
 
+    }
+
+    public void DestroyPlayer() {
+        // Scene currentScene = SceneManagement.GetActiveScene();
+        PlayerManager instance = PlayerManager.instance;
+        if(instance != null) {
+            Destroy(instance.gameObject);
+            PlayerManager.instance = null;
+        }
+    }
+
+    public void CreatePlayerOnPos(Vector3 playerPos, Vector3 playerDir) {
+        Quaternion rotation = Quaternion.Euler(playerDir);
+        GameObject player = Instantiate(playerPrefab, playerPos, rotation);
     }
 
     // Return Scene Settings given a Scene object
@@ -71,14 +104,19 @@ public class SceneController : MonoBehaviour
     }
 
     // Change the camera pivot position under "Basic Code"
-    private void changeCameraPosition(Vector3 pos) {
+    private void SetCameraPosition(Vector3 pos) {
         Transform cameraPivotTransform = CameraPivot.instance.transform;
         cameraPivotTransform.position = pos;
     }
 
     // Change the directional light direction under "Basic Code"
-    private void changeWorldLightDirection(Vector3 dir) {
+    private void SetWorldLightDirection(Vector3 dir) {
         Transform worldLightTransform = WorldLight.instance.transform;
         worldLightTransform.rotation = Quaternion.Euler(dir);
+    }
+    private void SetPlayerTransform(Vector3 pos, Vector3 angle) {
+        GridMovement player = PlayerManager.instance.GetComponent<GridMovement>();
+        player.SetPosition(pos);
+        player.transform.eulerAngles = angle;
     }
 }
