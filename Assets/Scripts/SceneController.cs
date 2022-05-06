@@ -7,6 +7,8 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
     public GameObject playerPrefab;
+    List<int> scenesToLoad = new List<int>();
+    List<AsyncOperation> sceneLoadingOperations = new List<AsyncOperation>();
     void Awake() {
         if (instance != null && instance != this)
             Destroy(gameObject);
@@ -35,40 +37,74 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("Room2", LoadSceneMode.Additive);
     }
 
-    // Load Scene additively given scene name
-    void LoadSceneAdditive(string sceneName) {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+    IEnumerator UnloadAllScenes() {
+        SceneManager.LoadSceneAsync("Logic");
+        yield return null;
+        SceneManager.UnloadSceneAsync("Logic");
+        yield return null;
+    }
+    IEnumerator LoadingScreen() {
+        float progress = 0;
+        for (int i = 0; i < sceneLoadingOperations.Count; i++)
+        {
+            while (!sceneLoadingOperations[i].isDone) {
+                progress += sceneLoadingOperations[i].progress;
+                float currentProgress = Mathf.Min(progress / sceneLoadingOperations.Count, 1f);
+                Debug.Log(progress/sceneLoadingOperations.Count);
+                yield return null;
+            }
+        }
+        sceneLoadingOperations.Clear();
+        scenesToLoad.Clear();
+        yield return null;
     }
     public void UnloadScene(string sceneName) {
         SceneManager.UnloadSceneAsync(sceneName);
     }
     // Load at the corresponding scene during a reset process
-    public void ResetAtScene(string sceneName) {
+    public IEnumerator ResetAtScene(string sceneName) {
+        
+        // To unload everything
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            var scene = SceneManager.GetSceneAt(i);
+            // Do not reload logic
+            if (scene.name.Equals("Logic")) continue;
+            scenesToLoad.Add(scene.buildIndex);
+            Debug.Log(scene.name);
+        }
+        yield return UnloadAllScenes();
+        foreach (var sceneIndex in scenesToLoad) {
+            sceneLoadingOperations.Add(SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive));
+        }
+        yield return LoadingScreen();
         Scene targetScene = SceneManager.GetSceneByName(sceneName);
-        LoadSceneAdditive(sceneName);
         SceneManager.SetActiveScene(targetScene);
         SceneSettings settings = getSceneSettings(targetScene);
         if(settings == null) {
             Debug.LogWarning("Not Finding Scene Setting!");
-            return;
+            yield return null;
         }
         SetCameraPosition(settings.cameraPosition);
         SetWorldLightDirection(settings.worldLightDirection);
         DestroyPlayer();
         CreatePlayerOnPos(settings.playerSpawnPosition, settings.playerSpawnRotation);
+        yield return null;
         
     }
     // Move to the scene. Load the scene if the scene is not loaded yet
-    public void SetActiveScene(string sceneName, bool setPlayerTransform) {
+    public IEnumerator SetActiveScene(string sceneName, bool setPlayerTransform) {
         Scene targetScene = SceneManager.GetSceneByName(sceneName);
         if (!targetScene.isLoaded) {
-            LoadSceneAdditive(sceneName);
+            sceneLoadingOperations.Add(SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive));
+            StartCoroutine(LoadingScreen());
         }
+        targetScene = SceneManager.GetSceneByName(sceneName);
         SceneManager.SetActiveScene(targetScene);
         SceneSettings settings = getSceneSettings(targetScene);
         if(settings == null) {
             Debug.LogWarning("Not Finding Scene Setting!");
-            return;
+            yield return null;
         }
         // Change camera position and directional light direction in "Basic Code" scene
         if (setPlayerTransform) {
@@ -76,7 +112,7 @@ public class SceneController : MonoBehaviour
         }
         SetCameraPosition(settings.cameraPosition);
         SetWorldLightDirection(settings.worldLightDirection);
-
+        yield return null;
     }
 
     public void DestroyPlayer() {

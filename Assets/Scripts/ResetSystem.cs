@@ -29,7 +29,7 @@ public class ResetSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
         FlowController.instance.ResetFlags();
         InventorySystem.instance.OnReset();
-        SceneController.instance.ResetAtScene(sceneName);
+        yield return SceneController.instance.ResetAtScene(sceneName);
         yield return new WaitForSeconds(1f);
     }
 }
