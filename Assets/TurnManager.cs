@@ -19,6 +19,7 @@ public class TurnManager : MonoBehaviour
             Destroy(gameObject);
         }
         else {
+            DontDestroyOnLoad(gameObject);
             instance = this;
         }
     }

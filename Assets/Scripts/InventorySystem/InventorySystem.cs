@@ -16,6 +16,7 @@ public class InventorySystem : MonoBehaviour
         if (instance != null && instance != this)
             Destroy(gameObject);
         else {
+            DontDestroyOnLoad(gameObject);
             instance = this;
             inventory = new List<InventoryItem>();
             m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
