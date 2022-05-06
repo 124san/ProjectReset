@@ -89,4 +89,9 @@ public class SceneDebugger : MonoBehaviour
         Transform worldLightTransform = WorldLight.instance.transform;
         worldLightTransform.rotation = Quaternion.Euler(dir);
     }
+
+    // Change the intensity of world light
+    private void changeWorldLightIntensity(float intensity) {
+        WorldLight.instance.GetComponent<Light>().intensity = intensity;
+    }
 }

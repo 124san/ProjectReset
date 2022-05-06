@@ -11,6 +11,7 @@ public class CameraPivot : MonoBehaviour
             Destroy(gameObject);
         else {
             instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 }

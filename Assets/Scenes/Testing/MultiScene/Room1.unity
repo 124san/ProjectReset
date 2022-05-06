@@ -590,7 +590,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7672218414296390072, guid: 31215351c55c67d43b1c9b38aefa7e9c, type: 3}
       propertyPath: m_Name
-      value: TurnHandler (1)
+      value: TurnHandler
       objectReference: {fileID: 0}
     - target: {fileID: 7672218414296390073, guid: 31215351c55c67d43b1c9b38aefa7e9c, type: 3}
       propertyPath: m_RootOrder
