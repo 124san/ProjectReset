@@ -19,8 +19,11 @@ public class TransitionAnimation : MonoBehaviour
         transitionAnimator = GetComponent<Animator>();
     }
 
-    public void TriggerAnimation() {
-        transitionAnimator.SetTrigger("Start");
+    public void FadeOut() {
+        transitionAnimator.SetTrigger("FadeOut");
+    }
+    public void FadeIn() {
+        transitionAnimator.SetTrigger("FadeIn");
     }
     public void TogglePlayerMovement(int value) {
         GridMovement playerMovement = PlayerManager.instance.GetComponent<GridMovement>();

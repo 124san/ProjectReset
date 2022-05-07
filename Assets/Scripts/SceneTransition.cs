@@ -18,19 +18,19 @@ public class SceneTransition : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         
         if (other.CompareTag("Player")) {
-            TransitionAnimation.instance.TriggerAnimation();
             GridMovement player = PlayerManager.instance.GetComponent<GridMovement>();
             StartCoroutine(MovePlayerWithDelay(transitionDelay, player));
         }
     }
 
     IEnumerator MovePlayerWithDelay(float delay, GridMovement player) {
+        TransitionAnimation.instance.FadeOut();
         yield return new WaitForSeconds(delay);
-        
         Vector3 targetPosition = new Vector3(destination.x, moveY ? destination.y : player.transform.position.y, destination.z);
         yield return SceneController.instance.SetActiveScene(sceneName, false);
         SceneController.instance.DestroyPlayer();
         SceneController.instance.CreatePlayerOnPos(targetPosition, Vector3.zero);
+        TransitionAnimation.instance.FadeIn();
         yield return new WaitForSeconds(delay);
     }
 }

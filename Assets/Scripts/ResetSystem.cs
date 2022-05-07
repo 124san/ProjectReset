@@ -31,12 +31,13 @@ public class ResetSystem : MonoBehaviour
     * Delete inventory items that are resetting
     */
     public IEnumerator Reset(string sceneName) {
-        TransitionAnimation.instance.TriggerAnimation();
+        TransitionAnimation.instance.FadeOut();
         yield return new WaitForSeconds(1f);
         TurnManager.instance.ResetTurn();
         FlowController.instance.ResetFlags();
         InventorySystem.instance.OnReset();
         yield return SceneController.instance.ResetAtScene(sceneName);
+        TransitionAnimation.instance.FadeIn();
         yield return new WaitForSeconds(1f);
     }
 }
