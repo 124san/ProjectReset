@@ -12,7 +12,7 @@ public class TurnHandler : MonoBehaviour
 
     void Start()
     {
-        TurnManager.instance.onTurnIncremented.AddListener(InvokeTurnEvent);
+        TurnManager.instance.onTurnChanged.AddListener(InvokeTurnEvent);
     }
 
     // Update is called once per frame

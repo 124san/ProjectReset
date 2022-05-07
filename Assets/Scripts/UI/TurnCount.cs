@@ -10,7 +10,7 @@ public class TurnCount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TurnManager.instance.onTurnIncremented.AddListener(UpdateTurnCount);
+        TurnManager.instance.onTurnChanged.AddListener(UpdateTurnCount);
         UpdateTurnCount();
     }
 

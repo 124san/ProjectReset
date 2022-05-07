@@ -23,10 +23,17 @@ public class ResetSystem : MonoBehaviour
             StartCoroutine(Reset("Room1"));
         }
     }
-
+    // This method handles every reset related operations, including
+    /*
+    * Sending player to the reset point's scene and position
+    * Reset turn to 1
+    * Reset flags. NoResetFlags will not be reset.
+    * Delete inventory items that are resetting
+    */
     public IEnumerator Reset(string sceneName) {
         TransitionAnimation.instance.TriggerAnimation();
         yield return new WaitForSeconds(1f);
+        TurnManager.instance.ResetTurn();
         FlowController.instance.ResetFlags();
         InventorySystem.instance.OnReset();
         yield return SceneController.instance.ResetAtScene(sceneName);

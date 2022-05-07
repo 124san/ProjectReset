@@ -642,7 +642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7672218414296390074, guid: 31215351c55c67d43b1c9b38aefa7e9c, type: 3}
       propertyPath: events.Array.data[0].turn
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7672218414296390074, guid: 31215351c55c67d43b1c9b38aefa7e9c, type: 3}
       propertyPath: events.Array.data[0].triggeredEvent.m_PersistentCalls.m_Calls.Array.size

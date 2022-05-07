@@ -12,7 +12,7 @@ public class TurnManager : MonoBehaviour
     private int currentTurn;
 
     public static TurnManager instance;
-    public UnityEvent onTurnIncremented;
+    public UnityEvent onTurnChanged;
 
     private void Awake() {
         if (instance != null && instance != this) {
@@ -27,19 +27,20 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResetTurn();
     }
 
     public void incrementTurn() {
         if (currentTurn != maxTurn) {
             currentTurn += 1;
             // Send signal to all TurnHandler
-            onTurnIncremented.Invoke();
+            onTurnChanged.Invoke();
         }
     }
 
-    public void resetTurn() {
-        currentTurn = 0;
+    public void ResetTurn() {
+        currentTurn = 1;
+        onTurnChanged.Invoke();
     }
 
     public int getCurrentTurn() {
