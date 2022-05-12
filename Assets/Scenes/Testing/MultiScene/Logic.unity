@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTurn: 3
   currentTurn: 0
-  onTurnIncremented:
+  onTurnChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &402262746
@@ -351,3 +351,4 @@ MonoBehaviour:
   sceneNames:
   - Room1
   - Room2
+  - TestPuzzleD1
