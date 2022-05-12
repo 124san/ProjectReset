@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing/MultiScene/Room2.unity
     guid: f8d7cdc8624aec74da27a25fbd5301ef
+  - enabled: 1
+    path: Assets/Scenes/Testing/MultiScene/TestPuzzleD1.unity
+    guid: ddae55266091f4248bcb394c527c512b
   m_configObjects: {}

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum DialogueBubbleTarget {
+    NoTarget = 0,
+    Player = 1,
+    Initiator = 2
+}
+
 public class DialogueUI : MonoBehaviour
 {
     // Panel that holds dialogue
@@ -14,6 +20,8 @@ public class DialogueUI : MonoBehaviour
     private ResponseHandler responseHandler;
     // Event for dialogue with no response
     private ResponseEvent responseEvent;
+    // Current Initiator of the dialogue
+    private GameObject initiator;
     private TypewriterEffect typewriterEffect;
     private void Awake() {
         if (instance != null && instance != this)
@@ -35,21 +43,53 @@ public class DialogueUI : MonoBehaviour
     }
 
     // Open dialogue box and show dialogue
-    public void ShowDialogue(DialogueData dialogueObject) {
+    public void ShowDialogue(DialogueData dialogueObject, GameObject initiator = null) {
         isOpen = true;
         dialogueBox.SetActive(true);
+        if (initiator != null) {
+            this.initiator = initiator;
+        }
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
     // Go through each string in dialogue
     private IEnumerator StepThroughDialogue(DialogueData dialogueObject) {
 
-        for (int i = 0; i < dialogueObject.Dialogue.Length; i++) {
-            string dialogue = dialogueObject.Dialogue[i];
-            yield return RunTypingEffect(dialogue);
-            textLabel.text = dialogue;
-            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
-            yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        for (int i = 0; i < Mathf.Max(dialogueObject.Dialogues.Length, dialogueObject.DialogueOld.Length); i++) {
+            // New
+            if (dialogueObject.Dialogues?.Length >= 1) {
+                var currentDialogue = dialogueObject.Dialogues[i];
+                // Update Dialogue box position based on bubble target
+                switch (currentDialogue.bubbleTarget)
+                {
+                    case DialogueBubbleTarget.Player:
+                        var playerScreenPos = CameraPivot.instance.WorldToScreenPointCenterPivot(PlayerManager.instance.transform.position);
+                        dialogueBox.GetComponent<RectTransform>().anchoredPosition = playerScreenPos;
+                        break;
+                    case DialogueBubbleTarget.Initiator:
+                        var initScreenPos = CameraPivot.instance.WorldToScreenPointCenterPivot(initiator.transform.position);
+                        dialogueBox.GetComponent<RectTransform>().anchoredPosition = initScreenPos;
+                        break;
+                    
+                    default:
+                        // TODO implement no target
+                        break;
+                }
+                string dialogue = currentDialogue.dialogueText;
+                yield return RunTypingEffect(dialogue);
+                textLabel.text = dialogue;
+                if (i == dialogueObject.Dialogues.Length - 1 && dialogueObject.HasResponses) break;
+                yield return null;
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            }
+            // Old dialogue code
+            else {
+                string dialogue = dialogueObject.DialogueOld[i];
+                yield return RunTypingEffect(dialogue);
+                textLabel.text = dialogue;
+                if (i == dialogueObject.DialogueOld.Length - 1 && dialogueObject.HasResponses) break;
+                yield return null;
+                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            }
         }
         if (dialogueObject.HasResponses) {
             responseHandler.ShowResponses(dialogueObject.Responses);

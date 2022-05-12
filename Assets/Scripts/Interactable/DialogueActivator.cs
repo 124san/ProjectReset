@@ -17,7 +17,7 @@ public class DialogueActivator : InteractableObject
         
     }
     public override void HandleInteraction() {
-        DialogueUI.instance.ShowDialogue(dialogueObject);
+        DialogueUI.instance.ShowDialogue(dialogueObject, gameObject);
         foreach(DialogueResponseEvents responseEvents in GetComponents<DialogueResponseEvents>()) {
             if (dialogueObject.Id == responseEvents.DialogueObject.Id) {
                 if (dialogueObject.HasResponses) {

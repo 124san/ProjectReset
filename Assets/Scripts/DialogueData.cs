@@ -7,9 +7,11 @@ using System;
 public class DialogueData : ScriptableObject
 {
     [SerializeField] int id;
+    [SerializeField] Dialogue[] dialogues;
     [SerializeField] [TextArea] string[] dialogue;
     [SerializeField] Response[] responses;
-    public string[] Dialogue => dialogue;
+    public Dialogue[] Dialogues => dialogues;
+    public String[] DialogueOld => dialogue;
     public bool HasResponses => Responses != null && Responses.Length > 0;
     public Response[] Responses => responses;
     public int Id => id;
