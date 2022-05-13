@@ -8,11 +8,17 @@ public class ResponseHandler : MonoBehaviour
     [SerializeField] RectTransform responseBox;
     [SerializeField] RectTransform responseButtonTemplate;
     [SerializeField] RectTransform responseContainer;
+    [SerializeField] RectTransform responseBoxNoBubble;
+    [SerializeField] RectTransform responseButtonTemplateNoBubble;
+    [SerializeField] RectTransform responseContainerNoBubble;
     DialogueUI dialogueUI;
     ResponseEvent[] responseEvents;
     List<GameObject> tempButtons = new List<GameObject>();
-    public void ShowResponses(Response[] responses) {
+    public void ShowResponses(Response[] responses, bool hasBubble) {
         float responseBoxHeight = 0;
+        RectTransform responseBox = hasBubble ? this.responseBox : this.responseBoxNoBubble;
+        RectTransform responseButtonTemplate = hasBubble ? this.responseButtonTemplate : this.responseButtonTemplateNoBubble;
+        RectTransform responseContainer = hasBubble ? this.responseContainer : this.responseContainerNoBubble;
 
         for (int i = 0; i < responses.Length; i++)
         {
@@ -21,7 +27,7 @@ public class ResponseHandler : MonoBehaviour
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
             responseButton.gameObject.SetActive(true);
             responseButton.GetComponentInChildren<TMP_Text>().text = response.ResponseText;
-            responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response, responseIndex));
+            responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response, responseIndex, hasBubble));
             tempButtons.Add(responseButton);
 
             responseBoxHeight += responseButtonTemplate.sizeDelta.y;
@@ -31,7 +37,11 @@ public class ResponseHandler : MonoBehaviour
         responseBox.gameObject.SetActive(true);
     }
 
-    void OnPickedResponse(Response response, int responseIndex) {
+    void OnPickedResponse(Response response, int responseIndex, bool hasBubble) {
+        RectTransform responseBox = hasBubble ? this.responseBox : this.responseBoxNoBubble;
+        RectTransform responseButtonTemplate = hasBubble ? this.responseButtonTemplate : this.responseButtonTemplateNoBubble;
+        RectTransform responseContainer = hasBubble ? this.responseContainer : this.responseContainerNoBubble;
+
         responseBox.gameObject.SetActive(false);
         foreach (GameObject button in tempButtons) {
             Destroy(button);

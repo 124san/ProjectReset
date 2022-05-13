@@ -998,7 +998,7 @@ MonoBehaviour:
   isInteractable: 1
   referenceAmount: 1
   noResetFlag: -1
-  dialogueObject: {fileID: 11400000, guid: e759368db0adc034889d5d506330cf61, type: 2}
+  dialogueObject: {fileID: 11400000, guid: e6bc386ffba8a29478fd36f24549e3c9, type: 2}
 --- !u!1001 &2002086684
 PrefabInstance:
   m_ObjectHideFlags: 0

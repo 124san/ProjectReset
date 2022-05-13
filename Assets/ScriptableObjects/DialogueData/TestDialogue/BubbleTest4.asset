@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
-  m_Name: BubbleTest2
+  m_Name: BubbleTest4
   m_EditorClassIdentifier: 
   id: 0
   dialogues:
-  - bubbleTarget: 2
-    speakerName: 
-    dialogueText: OkayChamp you picked yes.
+  - bubbleTarget: 0
+    speakerName: Servent
+    dialogueText: Milord! xqcL, xqcL, xqcL, xqcL, xqcL, xqcLLLLLLLLLLLLLL
+  - bubbleTarget: 1
+    speakerName: King
+    dialogueText: Speak.
   - bubbleTarget: 0
     speakerName: 
-    dialogueText: Response no bubble
+    dialogueText: This dialogue does not have bubble.
+  - bubbleTarget: 2
+    speakerName: I
+    dialogueText: But this one does.
   dialogue: []
-  responses:
-  - responseText: 1111
-    dialogueObject: {fileID: 0}
-  - responseText: 2?2?2?2?2?
-    dialogueObject: {fileID: 0}
+  responses: []
