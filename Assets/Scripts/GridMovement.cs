@@ -70,7 +70,7 @@ public class GridMovement : MonoBehaviour
         Ray ray = new Ray(transform.position + new Vector3(0, -0.5f, 0), transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(transform.position+ new Vector3(0, -0.5f, 0), transform.forward, out hit, rayLength)) {
-            if (hit.collider.CompareTag("Obstacle") || hit.collider.CompareTag("Door")) {
+            if (hit.collider.CompareTag("Obstacle") || hit.collider.CompareTag("Door") || hit.collider.CompareTag("Box")) {
                 return false;
             }
         }
