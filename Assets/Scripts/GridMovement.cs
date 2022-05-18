@@ -30,8 +30,8 @@ public class GridMovement : MonoBehaviour
     void Update()
     {
         if (Controlable()) {
-            PerformMove(); // For debugging purpose. Should be in FixedUpdate()
             MoveInputs();
+            PerformMove(); // For debugging purpose. Should be in FixedUpdate()
         }
     }
 
@@ -66,6 +66,16 @@ public class GridMovement : MonoBehaviour
             goingToMove = true;
         }
 
+        
+    }
+
+    // Transform/Move the character on the grid
+    // Should be called in FixedUpdate() for performance
+    void PerformMove()
+    {
+        // Turn character rotation
+        transform.eulerAngles = currentDirection;
+
         if (goingToMove && ValidMovement()) {
             destination = transform.position + nextPos;
             direction = nextPos;
@@ -73,14 +83,9 @@ public class GridMovement : MonoBehaviour
         } else {
             nextPos = Vector3.zero;
         }
-    }
 
-    // Transform/Move the character on the grid
-    // Should be called in FixedUpdate() for performance
-    void PerformMove()
-    {
+        // Transform character position
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-        transform.eulerAngles = currentDirection;
     }
 
     bool ValidMovement() {
