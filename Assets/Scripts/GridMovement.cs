@@ -29,14 +29,22 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!(isSitting || DialogueUI.instance.isOpen)) {
-            Move();
+        if (Controlable()) {
+            PerformMove(); // For debugging purpose. Should be in FixedUpdate()
+            MoveInputs();
         }
     }
 
-    void Move() {
-        transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+    // void FixedUpdate() 
+    // {
+    //     PerformMove();
+    // }
+
+    // Function for checking the movement input
+    // Should be called in Update()
+    void MoveInputs() {
         if (!takeMovementInput || Vector3.Distance(destination, transform.position) > 0) return;
+        
         if (Input.GetButton("Up")) {
             nextPos = Vector3.forward;
             currentDirection = up;
@@ -58,12 +66,21 @@ public class GridMovement : MonoBehaviour
             goingToMove = true;
         }
 
-        transform.eulerAngles = currentDirection;
         if (goingToMove && ValidMovement()) {
             destination = transform.position + nextPos;
             direction = nextPos;
             goingToMove = false;
+        } else {
+            nextPos = Vector3.zero;
         }
+    }
+
+    // Transform/Move the character on the grid
+    // Should be called in FixedUpdate() for performance
+    void PerformMove()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+        transform.eulerAngles = currentDirection;
     }
 
     bool ValidMovement() {
@@ -75,6 +92,10 @@ public class GridMovement : MonoBehaviour
             }
         }
         return true;
+    }
+
+    bool Controlable() {
+        return !(isSitting || DialogueUI.instance.isOpen);
     }
 
     void OnDrawGizmosSelected()
