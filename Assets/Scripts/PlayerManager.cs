@@ -5,10 +5,14 @@ using UnityEngine.Events;
 
 public class PlayerManager : MonoBehaviour
 {
+    // Singleton
     public static PlayerManager instance;
+    // Glow indicator related
     public GameObject glowIndicator;
     bool isGlowIndicatorOn;
-
+    // Disguise system related
+    public GameObject kingIndicator;
+    bool isDisguised;
     private void Awake() {
         if (instance != null && instance != this) {
             Destroy(gameObject);
@@ -31,5 +35,12 @@ public class PlayerManager : MonoBehaviour
     public void SetGlowIndicator(bool value) {
         isGlowIndicatorOn = value;
         glowIndicator.SetActive(value);
+    }
+    public bool GetDisguise() {
+        return isDisguised;
+    }
+    public void SetDisguise(bool value) {
+        isDisguised = value;
+        kingIndicator.SetActive(!value);
     }
 }

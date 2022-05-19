@@ -14,7 +14,7 @@ public class ConditionalDialogueActivator : DialogueActivator
     }
     public override void HandleInteraction() {
         activeDialogue = conditions.All(x => x.CheckCondition()) ? conditionalDialogue : dialogueObject;
-        DialogueUI.instance.ShowDialogue(activeDialogue);
+        DialogueUI.instance.ShowDialogue(activeDialogue, gameObject);
         foreach(DialogueResponseEvents responseEvents in GetComponents<DialogueResponseEvents>()) {
             if (activeDialogue.Id == responseEvents.DialogueObject.Id) {
                 if (activeDialogue.HasResponses) {

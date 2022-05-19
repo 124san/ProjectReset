@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece67a2b905cbc4449a762361e9b4771, type: 3}
-  m_Name: OwnerNoBread
+  m_Name: OwnerNoBreadDisguise
   m_EditorClassIdentifier: 
   id: 0
   dialogues:
   - bubbleTarget: 2
     speakerName: Bakery Owner
-    dialogueText: We cannot produce more banana bread since the banana bread machine
-      is broken.
+    dialogueText: 'Hello friend. You are here for banana bread? '
+  - bubbleTarget: 2
+    speakerName: Bakery Owner
+    dialogueText: Well, sorry to inform you but we are currently out of bread.
   dialogue: []
   responses: []
