@@ -24,4 +24,8 @@ public class WorldLight : MonoBehaviour
     public void changeLightIntensity(float intensity) {
         light.intensity = intensity;
     }
+
+    public void changeLightcolour(Color color) {
+        light.color = color;
+    }
 }
