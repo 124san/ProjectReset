@@ -26,6 +26,7 @@ public class PushInteraction : InteractableObject
             if (Vector3.Distance(transform.position, destination) < 0.001f) {
                 transform.position = destination;
                 isPushing = false;
+                PlayerManager.instance.GetComponent<GridMovement>().takeMovementInput = true;
             }
         }
     }
@@ -52,6 +53,7 @@ public class PushInteraction : InteractableObject
         
         // NOTE: the following one is a dummy testing simple way
         // TODO: complete it with animation similar as player
+        PlayerManager.instance.GetComponent<GridMovement>().takeMovementInput = false;
         isPushing = true;
         destination = transform.position + dir;
     }

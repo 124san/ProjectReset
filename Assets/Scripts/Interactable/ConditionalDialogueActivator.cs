@@ -13,6 +13,7 @@ public class ConditionalDialogueActivator : DialogueActivator
         conditions = GetComponents<Condition>();
     }
     public override void HandleInteraction() {
+        TurnTowardsPlayer();
         activeDialogue = conditions.All(x => x.CheckCondition()) ? conditionalDialogue : dialogueObject;
         DialogueUI.instance.ShowDialogue(activeDialogue, gameObject);
         foreach(DialogueResponseEvents responseEvents in GetComponents<DialogueResponseEvents>()) {
