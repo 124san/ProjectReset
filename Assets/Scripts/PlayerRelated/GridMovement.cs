@@ -16,6 +16,8 @@ public class GridMovement : MonoBehaviour
     // Only take movement input if this bool is set to true
     public bool takeMovementInput;
     public bool isSitting;
+    // player's y position at base height
+    private float baseHeight;
 
     public Vector3 nextPos, destination, direction;
     void Start()
@@ -24,6 +26,7 @@ public class GridMovement : MonoBehaviour
         currentDirection = up;
         nextPos = Vector3.forward;
         destination = transform.position;
+        baseHeight = transform.position.y;
     }
 
     // Update is called once per frame
@@ -78,6 +81,11 @@ public class GridMovement : MonoBehaviour
 
         if (goingToMove && ValidMovement()) {
             destination = transform.position + nextPos;
+            // Update y
+            if (Physics.Raycast(destination, Vector3.down, out RaycastHit hit, 4f)) {
+                Debug.Log((float)(hit.point.y));
+                destination.y = baseHeight + (hit.point.y-1f);
+            }
             direction = nextPos;
             goingToMove = false;
         } else {
