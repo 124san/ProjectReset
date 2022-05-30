@@ -2424,7 +2424,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288756030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ecb294c6fb89b14b9fd69ce14456f8d, type: 3}
   m_Name: 
@@ -2433,6 +2433,8 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 64
+  cutoutSize: 0.05
+  falloffSize: 0.05
 --- !u!1 &1341847388
 GameObject:
   m_ObjectHideFlags: 0
